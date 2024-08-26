@@ -11,6 +11,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.ismailmesutmujde.javaartbook.databinding.ActivityMainBinding;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     ArrayList<Art> artArrayList;
+    ArtAdapter artAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
 
         artArrayList = new ArrayList<>();
+
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        artAdapter = new ArtAdapter(artArrayList);
+        binding.recyclerView.setAdapter(artAdapter);
+
         getData();
     }
 
@@ -47,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 artArrayList.add(art);
             }
 
+            artAdapter.notifyDataSetChanged();
             cursor.close();
 
         } catch (Exception e) {
