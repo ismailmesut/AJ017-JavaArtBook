@@ -2,16 +2,22 @@ package com.ismailmesutmujde.javaartbook;
 
 import android.os.Bundle;
 import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.ismailmesutmujde.javaartbook.databinding.ActivityArtBinding;
 
 
 public class ArtActivity extends AppCompatActivity {
 
+    private ActivityArtBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_art);
+        binding = ActivityArtBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
 
     }
 
